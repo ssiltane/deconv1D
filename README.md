@@ -6,3 +6,5 @@ The set of codes works roughly like this. First a simulated convolution-deconvol
 Next, various regularized reconstruction methods are implemented and tested on the simulated data. These include truncated singular value decomposition (TSVD), Tikhonov regularization in classical and generalized form, Total Variation (TV) regularization, and wavelet sparsity reconstruction. 
 
 Finally, Convolutional Neural Networks (CNN) are applied to the deconvolution problem. 
+
+The aim of the code set is to discuss pros and cons of traditional inversion methods versus machine learning.
