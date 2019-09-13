@@ -8,8 +8,7 @@ fsize  = 20;
 msize  = 6;
 
 % Load precomputed stuff
-load data/deconv1_cont Nt t psi Nx x convres a
-load data/deconv5 n xvec f mCF rec mCFn recn r_alpha
+load data/deconv05 n xvec f mCF rec mn recn r_alpha
 
 % Create a plot window
 figure(1)
