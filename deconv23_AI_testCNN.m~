@@ -1,0 +1,22 @@
+load data/CNN net
+load data/deconv02 xvec n
+
+for eee = 1:1
+    
+    % Load precomputed results from file
+    loadcommand = ['load data_CNN/indfun_case_', num2str(eee,'%04d'), '  g Cg p'];
+    eval(loadcommand)
+    
+    
+    % Create a plot window
+    figure(1)
+    clf
+    
+    % Plot target
+    subplot(2,1,1)
+    plot(xvec,f,'k','linewidth',lwidth)
+    set(gca,'xticklabel','','fontsize',fsize)
+    set(gca,'ytick',[0,1],'fontsize',fsize)
+    axis([0 1 -.2 1])
+    
+end
