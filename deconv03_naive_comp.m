@@ -16,7 +16,7 @@ recIC  = inv(A)*mIC(:);
 recn   = inv(A)*mn(:);
 
 % Save results to disc
-save data/deconv03 recIC recn
+save data/deconv03 A recIC recn
 
 deconv03_naive_plot
 
