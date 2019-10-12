@@ -1,6 +1,6 @@
-% Simulate discrete convolution
+% Simulate discrete convolution. The signal length n can be chosen.
 %
-% Samuli Siltanen Sep 2019
+% Samuli Siltanen Oct 2019
 
 % Let's construct discrete approximation of the target
 n    = 128;
@@ -24,7 +24,7 @@ pn    = pn/sum(pn); % Normalization
 m = conv2(f,p,'same');
 m1 = conv2(f1,p,'same');
 
-% Copnstruct noisy measurement with modeling error
+% Construct noisy measurement with modeling error
 noiselevel = 0.02;
 mn = conv2(f,pn,'same') + noiselevel*max(abs(m))*randn(size(f));
 mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m1))*randn(size(f1));
