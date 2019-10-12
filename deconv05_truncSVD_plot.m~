@@ -46,6 +46,9 @@ title(['tSVD reconstruction, r_\alpha=',num2str(r_alpha),', error ',num2str(100*
 figure(2)
 clf
 
+% Load precomputed stuff
+load data/SVD svals 
+
 % Plot singular values, showing the ones actually used as red points
 semilogy([1:length(svals)],svals,'b.','markersize',msize)
 hold on

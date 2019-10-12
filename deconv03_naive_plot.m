@@ -1,4 +1,4 @@
-% Plot the results of deconv3_naive_comp.m. Show naive reconstruction from
+% Plot the results of deconv03_naive_comp.m. Show naive reconstruction from
 % both inverse-crime data and from noisy data without inverse crime.
 %
 % Samuli Siltanen Oct 2019
@@ -24,7 +24,7 @@ clf
 
 % Plot the "measurement" WITH INVERSE CRIME
 subplot(2,1,1)
-p1 = plot(xvec,f,'k','linewidth',lwidth)
+p1 = plot(xvec,f,'k','linewidth',lwidth);
 set(p1,'color',colorGray)
 hold on
 plot(xvec,mIC,'b','linewidth',lwidth)
