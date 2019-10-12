@@ -1,6 +1,8 @@
-% Create training data for CNN-based reconstruction
+% Create training data for CNN-based deconvolution of one-dimensional
+% signals. One can choose the number of randomly generated blocks in the
+% signal.
 %
-% Samuli Siltanen Sep 2019
+% Samuli Siltanen Oct 2019
 
 % Number of examples
 Nexamples = 10000;
