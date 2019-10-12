@@ -1,4 +1,4 @@
-% Plot the results of deconv6_Tikhonov_comp.m
+% Plot the results of deconv09_TVreg_comp.m
 %
 % Samuli Siltanen Oct 2019
 
@@ -10,9 +10,7 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load precomputed stuff
-load data/tikhonov06 n xvec f mn recn alpha
-load data/SVD A U D V svals
-[row,col] = size(A);
+load  data/deconv09_TVreg n alpha xvec f mn recn
 
 % Calculate reconstruction error
 errn = norm(recn(:)-f(:))/norm(f(:));
@@ -40,4 +38,4 @@ p2 = plot(xvec,recn,'b','linewidth',lwidth);
 set(p2,'color',colorRecon)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 -.2 1.6])
-title(['Tikhonov reconstruction, \alpha=',num2str(alpha),', error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)
+title(['Total variation reconstruction, \alpha=',num2str(alpha),', error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)

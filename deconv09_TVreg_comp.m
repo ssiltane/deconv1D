@@ -1,14 +1,15 @@
 % Use total variation regularization for deconvolution
-% The routines deconv3_naive_comp.m and deconv4_SVD_comp.m must be
+% The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
 % computed before this one.
 %
-% Samuli Siltanen Feb 2015
+% Samuli Siltanen Oct 2019
 
 % Load previous results
-load data/deconv3 n xvec f A mCF mCFn
+load data/deconv02 n xvec Dx f tvec p pn mn
+load data/SVD A 
 
 % Regularization parameter
-alpha = 1;
+alpha = .001;
 
 % Construct the quadratic optimization problem matrix
 H = zeros(3*n);
@@ -16,7 +17,7 @@ H(1:n,1:n) = 2*A.'*A;
 
 % Construct the vector h of the linear term
 h = alpha*ones(3*n,1);
-h(1:n) = -2*A.'*mCFn;
+h(1:n) = -2*A.'*mn(:);
 
 % Construct prior matrix of size (n)x(n). This implements difference
 % between consecutive values assuming periodic boundary conditions.
@@ -42,7 +43,7 @@ recn = uvv(1:n);
 disp(['Number of iterations: ', num2str(output.iterations)])
 
 % Save results to disc
-save data/TVreg n alpha xvec f mCFn recn
+save data/deconv09_TVreg n alpha xvec f mn recn
 
-deconv9_TVreg_plot
+deconv09_TVreg_plot
 

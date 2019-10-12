@@ -25,16 +25,16 @@ pn    = max(0,p+0.03*max(p)*randn(size(p))); % Avoid inverse crime
 pn    = pn/sum(pn); % Normalization
 
 % Construct ideal measurement
-m1 = conv2(f1,p,'same');
-m2 = conv2(f2,p,'same');
+m = conv2(f1,p,'same');
+m1 = conv2(f2,p,'same');
 
 % Construct noisy measurement with modeling error
 noiselevel = 0.02;
-mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m))*randn(size(f));
-mn2 = conv2(f2,pn,'same') + noiselevel*max(abs(m1))*randn(size(f2));
+mn = conv2(f1,pn,'same') + noiselevel*max(abs(m))*randn(size(f));
+mn1 = conv2(f2,pn,'same') + noiselevel*max(abs(m1))*randn(size(f2));
 
 % Save results to disc
-save data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+save data/deconv02 n xvec Dx f1 tvec p pn m mn f2 mn1 m1
 
 % Plot the results
 deconv02_discretedata_plot

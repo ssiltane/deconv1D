@@ -2,10 +2,10 @@
 % The routines deconv3_naive_comp.m and deconv4_SVD_comp.m must be
 % computed before this one.
 %
-% Samuli Siltanen Feb 2015
+% Samuli Siltanen Oct 2019
 
 % Load previous results
-load data/deconv3 n xvec f A mCF mCFn
+load data/deconv02 n xvec Dx f tvec p pn mn
 load data/SVD A U D V svals
 
 % Collection of regularization parameters
@@ -23,7 +23,7 @@ for iii = 1:length(alphavec)
     Dplus(1:n,1:n) = diag(svals./(svals.^2+alpha));
     
     % Compute reconstruction and record the result in the matrix recomat
-    recn = V*Dplus*(U.')*mCFn;
+    recn = V*Dplus*(U.')*mn(:);
     recomat(:,iii) = recn(:);
     
     % Monitor the run
@@ -31,7 +31,7 @@ for iii = 1:length(alphavec)
 end
 
 % Save results to disc
-save data/tikhonov6b n alphavec xvec f mCFn recomat
+save data/tikhonov06b n alphavec xvec f mn recomat
 
-deconv6b_Tikhonov_many_plot
+deconv06b_Tikhonov_many_plot
 
