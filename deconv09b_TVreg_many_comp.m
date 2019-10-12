@@ -1,4 +1,5 @@
-% Use total variation regularization for deconvolution
+% Use total variation regularization for deconvolution and sweep over
+% regularization parameter values. 
 %
 % The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
 % computed before this one.
@@ -8,8 +9,8 @@
 % Choose signal 1 or 2
 sig_num = 1;
 
-% Regularization parameter
-alpha = .001;
+% Collection of regularization parameters
+alphavec = 10.^linspace(-5.5,1.5,30);
 
 % Load previous results
 load data/SVD A 
@@ -25,10 +26,6 @@ end
 % Construct the quadratic optimization problem matrix
 H = zeros(3*n);
 H(1:n,1:n) = 2*A.'*A;
-
-% Construct the vector h of the linear term
-h = alpha*ones(3*n,1);
-h(1:n) = -2*A.'*mn(:);
 
 % Construct prior matrix of size (n)x(n). This implements difference
 % between consecutive values assuming periodic boundary conditions.
@@ -49,12 +46,32 @@ MAXITER = 200; % Maximum numbers of iterations, Matlab's default value is 200
 QPopt   = optimset('quadprog');
 QPopt   = optimset(QPopt,'MaxIter', MAXITER,'Algorithm',...
     'interior-point-convex','Display','iter');
-[uvv,val,ef,output] = quadprog(H,h,AA,b,Aeq,beq,lb,ub,iniguess,QPopt);
-recn = uvv(1:n);
-disp(['Number of iterations: ', num2str(output.iterations)])
 
-% Save results to disc
-save data/deconv09_TVreg n alpha xvec f mn recn sig_num
+% Loop over regularization parameters and compute reconstructions
+sparsevec = zeros(size(alphavec));
+recomat   = zeros(n,length(alphavec));
+for iii = 1:length(alphavec)
+    % Pick current regularization parameter
+    alpha = alphavec(iii);
+    
+    % Construct the vector h of the linear term
+    h = alpha*ones(3*n,1);
+    h(1:n) = -2*A.'*mn(:);
+    
+    % Reconstruct
+    [uvv,val,ef,output] = quadprog(H,h,AA,b,Aeq,beq,lb,ub,iniguess,QPopt);
+    disp(['Number of iterations: ', num2str(output.iterations)])
 
-deconv09_TVreg_plot
+    % Compute reconstruction and record the result in the matrix recomat
+    recn = uvv(1:n);
+    recomat(:,iii) = recn(:);
+    
+    % Monitor the run
+    disp([iii length(alphavec)])
+end
+
+% Save all results to disc
+save data/deconv09b_TVreg_many n alphavec xvec f mn recomat sig_num
+
+deconv09b_TVreg_many_plot
 
