@@ -1,7 +1,6 @@
-% Plot the results of deconv3_naive_comp.m. Show naive reconstruction from
-% both inverse-crime data and from noisy data without inverse crime.
+% Plot the results of deconv3_naive_comp.m
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen January 2015
 
 % Parameters for controlling the plot
 lwidth = 1.5;
@@ -15,8 +14,8 @@ load data/deconv02 n xvec f
 load data/deconv03 mIC recIC recn
 
 % Calculate reconstruction errors
-errIC = norm(recIC(:)-f(:))/norm(f(:));
-errn = norm(recn(:)-f(:))/norm(f(:));
+errIC = norm(recIC-f)/norm(f);
+errn = norm(recn-f)/norm(f);
 
 % Create a plot window
 figure(1)
@@ -27,7 +26,7 @@ subplot(2,1,1)
 p1 = plot(xvec,f,'k','linewidth',lwidth)
 set(p1,'color',colorGray)
 hold on
-plot(xvec,mIC,'b','linewidth',lwidth)
+plot(xvec,mIC,'r','linewidth',lwidth)
 set(gca,'xticklabel','','fontsize',fsize)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 -.2 1.6])
@@ -42,7 +41,7 @@ p2 = plot(xvec,recIC,'b','linewidth',lwidth);
 set(p2,'color',colorRecon)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 -.2 1.6])
-title(['Naive reconstruction WITH inverse crime, error ',num2str(100*errIC,'%0.1f'),'%'],'fontsize',fsize)
+title(['Naive reconstruction WITH inverse crime, error',num2str(100)],'fontsize',fsize)
 
 
 
@@ -67,11 +66,10 @@ subplot(2,1,2)
 p1 = plot(xvec,f,'k','linewidth',lwidth)
 set(p1,'color',colorGray)
 hold on
-p2 = plot(xvec,recn,'b','linewidth',lwidth);
-set(p2,'color',colorRecon)
+plot(xvec,recn,'b','linewidth',lwidth)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 -.2 1.6])
-title(['Naive reconstruction, no inverse crime, error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)
+title('Naive reconstruction, no crime','fontsize',fsize)
 
 
 
