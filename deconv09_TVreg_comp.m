@@ -1,15 +1,26 @@
 % Use total variation regularization for deconvolution
+%
 % The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
 % computed before this one.
 %
 % Samuli Siltanen Oct 2019
 
-% Load previous results
-load data/deconv02 n xvec Dx f tvec p pn mn
-load data/SVD A 
+% Choose signal 1 or 2
+sig_num = 1;
 
 % Regularization parameter
 alpha = .001;
+
+% Load previous results
+load data/SVD A 
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+if sig_num==1
+    f = f1;
+    mn = mn1;
+else
+    f = f2;
+    mn = mn2;
+end
 
 % Construct the quadratic optimization problem matrix
 H = zeros(3*n);
@@ -43,7 +54,7 @@ recn = uvv(1:n);
 disp(['Number of iterations: ', num2str(output.iterations)])
 
 % Save results to disc
-save data/deconv09_TVreg n alpha xvec f mn recn
+save data/deconv09_TVreg n alpha xvec f mn recn sig_num
 
 deconv09_TVreg_plot
 
