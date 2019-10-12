@@ -6,7 +6,7 @@
 % Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 1;
+sig_num = 2;
 
 % Regularization parameter
 alpha = .01; 

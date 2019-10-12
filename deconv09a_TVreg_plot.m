@@ -29,7 +29,7 @@ hold on
 plot(xvec,mn,'r','linewidth',lwidth)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 ymin ymax])
-title('Noisy measurement (red) of signal 1 (gray)','fontsize',fsize)
+title(['Noisy measurement (red) of signal ',num2str(sig_num),' (gray)'],'fontsize',fsize)
 
 % Plot reconstruction
 subplot(2,1,2)
