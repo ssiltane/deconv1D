@@ -1,4 +1,5 @@
-% Plot the results of deconv6_Tikhonov_comp.m
+% Test the CNN network trained by routine deconv22_AI_trainCNN.m
+% with noisy non-crime data
 %
 % Samuli Siltanen Oct 2019
 
@@ -9,13 +10,18 @@ msize  = 6;
 colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
-% Load precomputed stuff
-load data/tikhonov06 n xvec f mn recn alpha
-load data/SVD A U D V svals
-[row,col] = size(A);
+% Load previous results
+load data/deconv02 n xvec Dx f tvec p pn mn
+load data/CNN net
+
+% Use pre-trained convolutional neural network for deconvolution
+netinput = zeros(n,1,1,1);
+netinput(:,1,1,1) = mn(:);
+recn = predict(net,netinput);
 
 % Calculate reconstruction error
 errn = norm(recn(:)-f(:))/norm(f(:));
+
 
 % Create a plot window
 figure(1)
@@ -40,19 +46,4 @@ p2 = plot(xvec,recn,'b','linewidth',lwidth);
 set(p2,'color',colorRecon)
 set(gca,'ytick',[0,1],'fontsize',fsize)
 axis([0 1 -.2 1.6])
-title(['Tikhonov reconstruction, r\alpha=',num2str(r_alpha),', error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)
-
-% Create a plot window
-figure(2)
-clf
-
-% Load precomputed stuff
-load data/SVD svals 
-
-% Plot singular values, showing the ones actually used as red points
-semilogy([1:length(svals)],svals,'b.','markersize',msize)
-hold on
-semilogy([1:length(svals)],svals./(svals.^2+alpha),'r.','markersize',msize)
-axis square
-xlim([1 length(svals)])
- 
+title(['CNN reconstruction, error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)
