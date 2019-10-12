@@ -10,9 +10,11 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load precomputed stuff
-load data/deconv05 n xvec f mn recn r_alpha
+load data/deconv05 n xvec f mn recn r_alpha sig_num
 load data/SVD A U D V svals
 [row,col] = size(A);
+ymin = min(f)-.2;
+ymax = max(f)+.2;
 
 % Calculate reconstruction error
 errn = norm(recn(:)-f(:))/norm(f(:));
@@ -23,23 +25,23 @@ clf
 
 % Plot the data
 subplot(2,1,1)
-p1 = plot(xvec,f,'k','linewidth',lwidth)
+p1 = plot(xvec,f,'k','linewidth',lwidth);
 set(p1,'color',colorGray)
 hold on
 plot(xvec,mn,'r','linewidth',lwidth)
 set(gca,'ytick',[0,1],'fontsize',fsize)
-axis([0 1 -.2 1])
+axis([0 1 ymin ymax])
 title('Noisy measurement (red) of signal 1 (gray)','fontsize',fsize)
 
 % Plot reconstruction
 subplot(2,1,2)
-p1 = plot(xvec,f,'k','linewidth',lwidth)
+p1 = plot(xvec,f,'k','linewidth',lwidth);
 set(p1,'color',colorGray)
 hold on
 p2 = plot(xvec,recn,'b','linewidth',lwidth);
 set(p2,'color',colorRecon)
 set(gca,'ytick',[0,1],'fontsize',fsize)
-axis([0 1 -.2 1.6])
+axis([0 1 ymin ymax])
 title(['tSVD reconstruction, r_\alpha=',num2str(r_alpha),', error ',num2str(100*errn,'%0.1f'),'%'],'fontsize',fsize)
 
 % Create a plot window

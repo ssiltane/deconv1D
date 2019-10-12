@@ -1,15 +1,26 @@
-% Use Tikhonov regularization for deconvolution
+% Use Tikhonov regularization for deconvolution.
+%
 % The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
 % computed before this one.
 %
 % Samuli Siltanen Oct 2019
 
-% Load previous results
-load data/deconv02 n xvec Dx f tvec p pn mn
-load data/SVD A U D V svals
+% Choose signal 1 or 2
+sig_num = 1;
 
 % Regularization parameter
 alpha = .01; 
+
+% Load previous results
+load data/SVD A U D V svals
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+if sig_num==1
+    f = f1;
+    mn = mn1;
+else
+    f = f2;
+    mn = mn2;
+end
 
 % Build the matrix Dplus_alpha
 Dplus = zeros(size(D));
@@ -19,8 +30,8 @@ Dplus(1:n,1:n) = diag(svals./(svals.^2+alpha));
 recn   = V*Dplus*(U.')*mn(:);
 
 % Save results to disc
-save data/tikhonov06 n xvec f mn recn alpha
+save data/tikhonov06 n xvec f mn recn alpha sig_num
 
 % Plot the results
-deconv06_Tikhonov_plot
+deconv06a_Tikhonov_plot
 

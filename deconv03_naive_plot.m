@@ -11,15 +11,7 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load precomputed stuff
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
-load data/deconv03 A recIC recn mIC sig_num
-if sig_num==1
-    f = f1;
-    mn = mn1;
-else
-    f = f2;
-    mn = mn2;
-end
+load data/deconv03 n xvec f mn A recIC recn mIC sig_num
 ymin = min(f)-.2;
 ymax = max(f)+.2;
 

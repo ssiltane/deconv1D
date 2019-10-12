@@ -1,9 +1,9 @@
 % Try naive reconstruction
 %
-% Samuli Siltanen Sep 2019
+% Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 1;
+sig_num = 2;
 
 % Load precomputed stuff
 load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
@@ -26,7 +26,7 @@ recIC  = inv(A)*mIC(:);
 recn   = inv(A)*mn(:);
 
 % Save results to disc
-save data/deconv03 A recIC recn mIC sig_num
+save data/deconv03 n xvec f mn A recIC recn mIC sig_num
 
 deconv03_naive_plot
 
