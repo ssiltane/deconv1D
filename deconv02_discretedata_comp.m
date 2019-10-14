@@ -2,7 +2,12 @@
 % one-dimensional signals. 
 %
 % The signal length n can be chosen; for example n=128 is a suitable
-% choice. 
+% choice. Note that n should be a power of two for some of the routines in
+% this folder to work.
+%
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
 %
 % Samuli Siltanen Oct 2019
 

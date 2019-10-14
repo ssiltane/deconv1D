@@ -2,6 +2,8 @@
 % signals. One can choose the number of randomly generated blocks in the
 % signal.
 %
+% The routine deconv02_discretedata_comp.m must be computed before this one.
+%
 % Samuli Siltanen Oct 2019
 
 % Number of examples

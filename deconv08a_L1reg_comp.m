@@ -1,4 +1,4 @@
-% Use total variation regularization for deconvolution
+% Use L1 regularization for deconvolution
 %
 % The routines deconv02_discretedata_comp.m and deconv03_naive_comp.m
 % must be computed before this one.
@@ -13,7 +13,7 @@
 sig_num = 1;
 
 % Regularization parameter
-alpha = .001;
+alpha = .01;
 
 % Load previous results
 load data/SVD A 
@@ -34,14 +34,9 @@ H(1:n,1:n) = 2*A.'*A;
 h = alpha*ones(3*n,1);
 h(1:n) = -2*A.'*mn(:);
 
-% Construct prior matrix of size (n)x(n). This implements difference
-% between consecutive values assuming periodic boundary conditions.
-L = eye(n);
-L = L-[L(:,end),L(:,1:end-1)];
-
 % Compute reconstruction using quadprog
 % Construct input arguments for quadprog.m
-Aeq         = [L,-eye(n),eye(n)];
+Aeq         = [eye(n),-eye(n),eye(n)];
 beq         = zeros(n,1);
 lb          = [repmat(-Inf,n,1);zeros(2*n,1)];
 ub          = repmat(Inf,3*n,1);
@@ -58,7 +53,7 @@ recn = uvv(1:n);
 disp(['Number of iterations: ', num2str(output.iterations)])
 
 % Save results to disc
-save data/deconv09_TVreg n alpha xvec f mn recn sig_num
+save data/deconv08a_L1reg n alpha xvec f mn recn sig_num
 
-deconv09a_TVreg_plot
+deconv08a_L1reg_plot
 

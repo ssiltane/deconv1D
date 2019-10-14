@@ -1,10 +1,13 @@
 % Train a CNN for 1-dimensional deconvolution. The files deconv20_AI_data_comp.m
 % and deconv21_AI_dataprep.m should be run before this one.
 %
+% The routines deconv02_discretedata_comp.m, deconv20_AI_data_comp.m and 
+% deconv21_AI_dataprep.m must be computed before this one.
+%
 % Samuli Siltanen Oct 2019
 
 % Load precomputed data
-load data/datamat XTrain XValidation YTrain YValidation
+load data_CNN/datamat XTrain XValidation YTrain YValidation
 load data/deconv02 n
 
 % Construct validation data

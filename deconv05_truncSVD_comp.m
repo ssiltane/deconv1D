@@ -1,6 +1,11 @@
-% Use truncated SVD for deconvolution
+% Use truncated SVD for one-dimensional deconvolution.
+%
 % The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
 % computed before this one.
+%
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
 %
 % Samuli Siltanen Oct 2019
 

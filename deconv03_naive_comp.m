@@ -1,4 +1,11 @@
-% Try naive reconstruction
+% Try naive reconstruction for the one-dimensional decomvolution problem,
+% both with inverse-crime data and more realistic noisy data.
+%
+% The routine deconv02_discretedata_comp.m must be computed before this one.
+%
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
 %
 % Samuli Siltanen Oct 2019
 

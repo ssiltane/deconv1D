@@ -1,8 +1,13 @@
-% Use total variation regularization for deconvolution and sweep over
-% regularization parameter values. 
+% Use total variation regularization for deconvolution with the
+% regularization parameter ranging over an interval with logarithmic
+% sampling. 
 %
-% The routines deconv02_discretedata_comp.m and deconv04_SVD_comp.m must be 
-% computed before this one.
+% The routines deconv02_discretedata_comp.m and deconv03_naive_comp.m
+% must be computed before this one.
+%
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
 %
 % Samuli Siltanen Oct 2019
 
@@ -10,7 +15,7 @@
 sig_num = 2;
 
 % Collection of regularization parameters
-alphavec = 10.^linspace(-5.5,1.5,30);
+alphavec = 10.^linspace(-6,1.5,40);
 
 % Load previous results
 load data/SVD A 

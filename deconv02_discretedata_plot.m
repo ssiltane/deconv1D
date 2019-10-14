@@ -1,6 +1,6 @@
-% Plot the results of deconv2_discretedata_comp.m
+% Plot the results of deconv02_discretedata_comp.m
 %
-% Samuli Siltanen January 2015
+% Samuli Siltanen Oct 2019
 
 % Parameters for controlling the plot
 lwidth = 1.5;
