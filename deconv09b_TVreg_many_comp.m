@@ -12,7 +12,7 @@
 % Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 2;
+sig_num = 1;
 
 % Collection of regularization parameters
 alphavec = 10.^linspace(-6,1.5,40);
