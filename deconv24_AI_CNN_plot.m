@@ -4,7 +4,7 @@
 % Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 2;
+sig_num = 1;
 
 % Parameters for controlling the plot
 lwidth = 1.5;
@@ -14,9 +14,9 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load previous results
-load data/CNN net
+load data_CNN/CNN net
 load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
-if sig_num==1
+if sig_num==2
     f = f1;
     mn = mn1;
 else

@@ -10,10 +10,10 @@
 % Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 2;
+sig_num = 1;
 
 % Number of singular values to use
-r_alpha = 30; 
+r_alpha = 50; 
 
 % Load previous results
 load data/SVD A U D V svals
