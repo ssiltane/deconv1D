@@ -1,8 +1,6 @@
 % Train a CNN for 1-dimensional deconvolution. The files deconv20_AI_data_comp.m
 % and deconv21_AI_dataprep.m should be run before this one.
 %
-% The network architecture here is better than in deconv22_AI_trainCNN.m
-%
 % The routines deconv02_discretedata_comp.m, deconv20_AI_data_comp.m and 
 % deconv21_AI_dataprep.m must be computed before this one.
 %
@@ -17,12 +15,28 @@ ValidationData = cell([1,2]);
 ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
 
+layers = [
+    imageInputLayer([n 1 1])
+    convolution2dLayer([11 1],40,"Name","convfirst","Padding","same")
+    tanhLayer("Name","sigmoid")
+    fullyConnectedLayer(n,"Name","fc")
+    regressionLayer];
 
+% This is the architecture I used first, but the one above is better
+% layers = [
+%     imageInputLayer([n 1 1])
+%     convolution2dLayer([3 1],36,"Name","convfirst","Padding","same")
+%     leakyReluLayer(0.01,"Name","leakyrelu")
+%     averagePooling2dLayer([3 1],"Name","avepool","Padding","same","Stride",[2 1]);
+%     convolution2dLayer([3 1],20,"Name","convsecond","Padding","same")
+%     leakyReluLayer("Name","relu")
+%     fullyConnectedLayer(n,"Name","fc")
+%     regressionLayer];
 
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',10, ...
+    'MaxEpochs',60, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...
