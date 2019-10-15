@@ -15,7 +15,7 @@
 n    = 128;
 xvec = [0:(n-1)]/n;
 Dx   = xvec(2)-xvec(1);
-f1    = convtarget1(xvec);
+f1   = convtarget1(xvec);
 f2   = convtarget2(xvec);
 
 % Construct the ideal discrete PSF
@@ -35,7 +35,7 @@ m2 = conv2(f2,p,'same');
 
 % Construct noisy measurement with modeling error
 noiselevel = 0.02;
-mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m))*randn(size(f));
+mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m))*randn(size(f1));
 mn2 = conv2(f2,pn,'same') + noiselevel*max(abs(m1))*randn(size(f2));
 
 % Save results to disc
