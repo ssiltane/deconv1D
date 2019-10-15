@@ -1,7 +1,11 @@
 % Compute singular value decomposition of the convolution matrix A
 % The routine deconv03_naive_comp.m must be computed before this one.
 %
-% Samuli Siltanen September 2019
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
+%
+% Samuli Siltanen Oct 2019
 
 % Load convolution matrix
 load  data/deconv03 A 

@@ -1,7 +1,9 @@
 % Prepare the convolution data into a form readily
 % accepted by CNN routines in Matlab's Deep Learning toolbox.
-%
 % Here the training data consists of pairs (convolved function, original function)
+%
+% The routines deconv02_discretedata_comp.m and deconv20_AI_data_comp.m must 
+% be computed before this one.
 %
 % Samuli Siltanen August 2019
 
@@ -59,4 +61,4 @@ end
 
 % Save all of the generated data into one file to be conveniently used in
 % machine learning
-save data/datamat XTrain XValidation YTrain YValidation NexamplesTrain NexamplesValidation
+save data_CNN/datamat XTrain XValidation YTrain YValidation NexamplesTrain NexamplesValidation

@@ -1,9 +1,26 @@
-% Try naive reconstruction
+% Try naive reconstruction for the one-dimensional decomvolution problem,
+% both with inverse-crime data and more realistic noisy data.
 %
-% Samuli Siltanen Sep 2019
+% The routine deconv02_discretedata_comp.m must be computed before this one.
+%
+% For the theory behind these computations, please see the book
+% Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
+% problems with practical applications," SIAM 2012.
+%
+% Samuli Siltanen Oct 2019
+
+% Choose signal 1 or 2
+sig_num = 1;
 
 % Load precomputed stuff
-load data/deconv02 n xvec Dx f tvec p pn mn
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+if sig_num==1
+    f = f1;
+    mn = mn1;
+else
+    f = f2;
+    mn = mn2;
+end
 
 % Let us build the measurement matrix using the ideal PSF
 A = DC_convmtx(p,n);
@@ -16,7 +33,7 @@ recIC  = inv(A)*mIC(:);
 recn   = inv(A)*mn(:);
 
 % Save results to disc
-save data/deconv03 A recIC recn
+save data/deconv03 n xvec f mn A recIC recn mIC sig_num
 
 deconv03_naive_plot
 
