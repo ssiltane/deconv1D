@@ -35,7 +35,7 @@ m2 = conv2(f2,p,'same');
 
 % Construct noisy measurement with modeling error
 noiselevel = 0.02;
-mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m))*randn(size(f1));
+mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m1))*randn(size(f1));
 mn2 = conv2(f2,pn,'same') + noiselevel*max(abs(m1))*randn(size(f2));
 
 % Save results to disc
