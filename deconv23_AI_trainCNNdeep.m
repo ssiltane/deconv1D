@@ -1,7 +1,7 @@
 % Train a CNN for 1-dimensional deconvolution. The files deconv20_AI_data_comp.m
 % and deconv21_AI_dataprep.m should be run before this one.
 %
-% The routines deconv02_discretedata_comp.m, deconv20_AI_data_comp.m and 
+% The routines deconv02_discretedata_comp.m, deconv20_AI_data_comp.m and
 % deconv21_AI_dataprep.m must be computed before this one.
 %
 % Samuli Siltanen Oct 2019
@@ -15,12 +15,39 @@ ValidationData = cell([1,2]);
 ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
 
-layers = [
+% %Promising learning (validation RMSE 0.37) with 200 epochs. But the
+% %reconstruction quality is not so good.
+% layers = [
+%     imageInputLayer([n 1 1])
+%     convolution2dLayer([11 1],40,"Name","convfirst","Padding","same")
+%     tanhLayer("Name","sigmoid")
+%     convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
+%     tanhLayer("Name","sigmoid")
+%     fullyConnectedLayer(n,"Name","fc")
+%     regressionLayer];
+
+% 
+layers = [% 0.07
     imageInputLayer([n 1 1])
-    convolution2dLayer([11 1],40,"Name","convfirst","Padding","same")
+    convolution2dLayer([13 1],10,"Name","convfirst","Padding","same")
+    tanhLayer("Name","sigmoid")
+    convolution2dLayer([5 1],10,"Name","convfirst","Padding","same")
+    tanhLayer("Name","sigmoid")
+    convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
+    tanhLayer("Name","sigmoid")
+        convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
     fullyConnectedLayer(n,"Name","fc")
     regressionLayer];
+
+% layers = [ %0.50
+%     imageInputLayer([n 1 1])
+%     convolution2dLayer([12 1],50,"Name","convfirst","Padding","same")
+%     tanhLayer("Name","sigmoid")
+%     fullyConnectedLayer(n,"Name","fc")
+%     regressionLayer];
+
+
 
 % This is the architecture I used first, but the one above is better
 % layers = [
@@ -36,7 +63,7 @@ layers = [
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',60, ...
+    'MaxEpochs',1000, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...
@@ -47,4 +74,4 @@ options = trainingOptions('sgdm', ...
 net = trainNetwork(XTrain,YTrain,layers,options);
 
 % Save to disc
-save data_CNN/CNN net
+save data_CNN/CNN_deep net
