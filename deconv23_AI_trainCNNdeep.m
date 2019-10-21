@@ -14,38 +14,19 @@ load data/deconv02 n
 ValidationData = cell([1,2]);
 ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
-
-% %Promising learning (validation RMSE 0.37) with 200 epochs. But the
-% %reconstruction quality is not so good.
-% layers = [
-%     imageInputLayer([n 1 1])
-%     convolution2dLayer([11 1],40,"Name","convfirst","Padding","same")
-%     tanhLayer("Name","sigmoid")
-%     convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
-%     tanhLayer("Name","sigmoid")
-%     fullyConnectedLayer(n,"Name","fc")
-%     regressionLayer];
-
-% 
+ 
 layers = [% 0.07
     imageInputLayer([n 1 1])
-    convolution2dLayer([13 1],10,"Name","convfirst","Padding","same")
+    convolution2dLayer([13 1],30,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
-    convolution2dLayer([5 1],10,"Name","convfirst","Padding","same")
+    convolution2dLayer([5 1],30,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
     convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
-        convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
+    convolution2dLayer([3 1],10,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
     fullyConnectedLayer(n,"Name","fc")
     regressionLayer];
-
-% layers = [ %0.50
-%     imageInputLayer([n 1 1])
-%     convolution2dLayer([12 1],50,"Name","convfirst","Padding","same")
-%     tanhLayer("Name","sigmoid")
-%     fullyConnectedLayer(n,"Name","fc")
-%     regressionLayer];
 
 
 

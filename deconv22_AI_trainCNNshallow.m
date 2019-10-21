@@ -16,7 +16,7 @@ ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
 
 % Design a shallow network architecture
-layers = [ 
+layers = [ % RMSE 0.13, 1000 epcohs
     imageInputLayer([n 1 1])
     convolution2dLayer([15 1],60,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
