@@ -15,15 +15,20 @@ ValidationData = cell([1,2]);
 ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
  
-layers = [% 0.07
+% layers = [% 0.07, 1000 epochs
+%     imageInputLayer([n 1 1])
+%     convolution2dLayer([9 1],20,"Name","convfirst","Padding","same")
+%     tanhLayer("Name","sigmoid")
+%     convolution2dLayer([3 1],60,"Name","convfirst","Padding","same")
+%     tanhLayer("Name","sigmoid")
+%     fullyConnectedLayer(n,"Name","fc")
+%     regressionLayer]; 
+
+layers = [%0.09
     imageInputLayer([n 1 1])
-    convolution2dLayer([13 1],30,"Name","convfirst","Padding","same")
+    convolution2dLayer([7 1],200,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
-    convolution2dLayer([5 1],30,"Name","convfirst","Padding","same")
-    tanhLayer("Name","sigmoid")
-    convolution2dLayer([3 1],20,"Name","convfirst","Padding","same")
-    tanhLayer("Name","sigmoid")
-    convolution2dLayer([3 1],10,"Name","convfirst","Padding","same")
+    convolution2dLayer([5 1],10,"Name","convfirst","Padding","same")
     tanhLayer("Name","sigmoid")
     fullyConnectedLayer(n,"Name","fc")
     regressionLayer];
@@ -44,7 +49,7 @@ layers = [% 0.07
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',1000, ...
+    'MaxEpochs',400, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...
