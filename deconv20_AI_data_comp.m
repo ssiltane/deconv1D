@@ -7,7 +7,7 @@
 % Samuli Siltanen Oct 2019
 
 % Number of examples
-Nexamples = 100000;
+Nexamples = 10000;
 
 % Load precomputed stuff
 load data/deconv02 n xvec Dx tvec p

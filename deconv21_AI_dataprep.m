@@ -7,8 +7,8 @@
 %
 % Samuli Siltanen August 2019
 
-NexamplesTrain = 80000;
-NexamplesValidation = 19000;
+NexamplesTrain = 3000;
+NexamplesValidation = 3000;
 
 % Initialize data matrices
 load data/deconv20 Nexamples 

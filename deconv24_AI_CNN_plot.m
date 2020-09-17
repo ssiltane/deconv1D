@@ -4,7 +4,7 @@
 % Samuli Siltanen Oct 2019
 
 % Choose signal 1 or 2
-sig_num = 1;
+sig_num = 2;
 
 % Parameters for controlling the plot
 lwidth = 1.5;
