@@ -14,8 +14,8 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load previous results
-load data_CNN/CNN_deep net
-%load data_CNN/CNN_shallow net
+%load data_CNN/CNN_deep net
+load data_CNN/CNN_shallow net
 load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
 if sig_num==1
     f = f1;
