@@ -9,10 +9,10 @@
 % Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
 % problems with practical applications," SIAM 2012.
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen Sep 2020
 
 % Let's construct discrete approximation of the target
-n    = 128;
+n    = 256; 
 xvec = [0:(n-1)]/n;
 Dx   = xvec(2)-xvec(1);
 f1   = convtarget1(xvec);
@@ -38,8 +38,17 @@ noiselevel = 0.02;
 mn1 = conv2(f1,pn,'same') + noiselevel*max(abs(m1))*randn(size(f1));
 mn2 = conv2(f2,pn,'same') + noiselevel*max(abs(m1))*randn(size(f2));
 
+% Load temperature data measured by Kumpula weather station
+load data/DailyMaxTempKumpula2020 T
+f3 = T(1:n);
+f3 = f3(:).';
+
+% Construct ideal and "noisy" measurement with modeling error
+m3  = conv2(f3,pn,'same');
+mn3 = m3;
+
 % Save results to disc
-save data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+save data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
 
 % Plot the results
 deconv02_discretedata_plot

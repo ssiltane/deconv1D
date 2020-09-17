@@ -1,10 +1,10 @@
 % Test the CNN network trained by routine deconv22_AI_trainCNN.m
 % with noisy non-crime data
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen Sep 2020
 
-% Choose signal 1 or 2
-sig_num = 2;
+% Choose signal 1 or 2 or 3
+sig_num = 1;
 
 % Parameters for controlling the plot
 lwidth = 1.5;
@@ -14,15 +14,18 @@ colorGray = [.5 .5 .5];
 colorRecon= [144 2 190]/255;
 
 % Load previous results
-%load data_CNN/CNN_deep net
-load data_CNN/CNN_shallow net
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+load data_CNN/CNN_deep net
+%load data_CNN/CNN_shallow net
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
 if sig_num==1
     f = f1;
     mn = mn1;
-else
+elseif sig_num==2
     f = f2;
     mn = mn2;
+else
+    f = f3;
+    mn = mn3;
 end
 ymin = min(f)-.2;
 ymax = max(f)+.2;

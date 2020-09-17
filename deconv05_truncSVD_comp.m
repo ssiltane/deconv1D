@@ -9,21 +9,24 @@
 %
 % Samuli Siltanen Oct 2019
 
-% Choose signal 1 or 2
-sig_num = 1;
+% Choose signal 1 or 2 or 3
+sig_num = 3;
 
 % Number of singular values to use
 r_alpha = 50; 
 
 % Load previous results
 load data/SVD A U D V svals
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
 if sig_num==1
     f = f1;
     mn = mn1;
-else
+elseif sig_num==2
     f = f2;
     mn = mn2;
+else
+    f = f3;
+    mn = mn3;
 end
 
 % Build the matrix Dplus

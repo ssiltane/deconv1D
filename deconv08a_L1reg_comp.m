@@ -7,23 +7,26 @@
 % Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
 % problems with practical applications," SIAM 2012.
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen Sep 2020
 
-% Choose signal 1 or 2
-sig_num = 1;
+% Choose signal 1 or 2 or 3
+sig_num = 3;
 
 % Regularization parameter
-alpha = .01;
+alpha = 1;
 
 % Load previous results
 load data/SVD A 
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
 if sig_num==1
     f = f1;
     mn = mn1;
-else
+elseif sig_num==2
     f = f2;
     mn = mn2;
+else
+    f = f3;
+    mn = mn3;
 end
 
 % Construct the quadratic optimization problem matrix
