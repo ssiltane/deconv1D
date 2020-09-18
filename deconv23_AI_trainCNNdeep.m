@@ -14,7 +14,7 @@ load data/deconv02 n
 ValidationData = cell([1,2]);
 ValidationData{1} = XValidation;
 ValidationData{2} = YValidation;
- 
+
 % layers = [% 0.07, 1000 epochs
 %     imageInputLayer([n 1 1])
 %     convolution2dLayer([9 1],20,"Name","convfirst","Padding","same")
@@ -22,18 +22,22 @@ ValidationData{2} = YValidation;
 %     convolution2dLayer([3 1],60,"Name","convfirst","Padding","same")
 %     tanhLayer("Name","sigmoid")
 %     fullyConnectedLayer(n,"Name","fc")
-%     regressionLayer]; 
+%     regressionLayer];
 
 layers = [%0.09
     imageInputLayer([n 1 1])
-    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
-    reluLayer("Name","sigmoid")
-    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
-    reluLayer("Name","sigmoid")
-    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
-    reluLayer("Name","sigmoid")
-        convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
-    reluLayer("Name","sigmoid")
+    convolution2dLayer([3 1],50,"Name","convfirst1","Padding","same")
+    reluLayer("Name","l1")
+    convolution2dLayer([3 1],50,"Name","convfirst2","Padding","same")
+    reluLayer("Name","l2")
+    convolution2dLayer([3 1],50,"Name","convfirst3","Padding","same")
+    reluLayer("Name","l3")
+    convolution2dLayer([3 1],10,"Name","convfirst4","Padding","same")
+    reluLayer("Name","l4")
+%     convolution2dLayer([3 1],10,"Name","convfirst5","Padding","same")
+%     reluLayer("Name","l5")
+%     convolution2dLayer([3 1],10,"Name","convfirst6","Padding","same")
+%     reluLayer("Name","l6")
     fullyConnectedLayer(n,"Name","fc")
     regressionLayer];
 
@@ -53,7 +57,7 @@ layers = [%0.09
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',600, ...
+    'MaxEpochs',1000, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...

@@ -7,7 +7,7 @@
 %
 % Samuli Siltanen August 2019
 
-NexamplesTrain = 3000;
+NexamplesTrain = 6000;
 NexamplesValidation = 3000;
 
 % Initialize data matrices
