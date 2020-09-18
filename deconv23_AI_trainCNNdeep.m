@@ -4,7 +4,7 @@
 % The routines deconv02_discretedata_comp.m, deconv20_AI_data_comp.m and
 % deconv21_AI_dataprep.m must be computed before this one.
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen Sep 2020
 
 % Load precomputed data
 load data_CNN/datamat XTrain XValidation YTrain YValidation
@@ -26,10 +26,14 @@ ValidationData{2} = YValidation;
 
 layers = [%0.09
     imageInputLayer([n 1 1])
-    convolution2dLayer([7 1],200,"Name","convfirst","Padding","same")
-    tanhLayer("Name","sigmoid")
-    convolution2dLayer([5 1],10,"Name","convfirst","Padding","same")
-    tanhLayer("Name","sigmoid")
+    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
+    reluLayer("Name","sigmoid")
+    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
+    reluLayer("Name","sigmoid")
+    convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
+    reluLayer("Name","sigmoid")
+        convolution2dLayer([3 1],50,"Name","convfirst","Padding","same")
+    reluLayer("Name","sigmoid")
     fullyConnectedLayer(n,"Name","fc")
     regressionLayer];
 
@@ -49,7 +53,7 @@ layers = [%0.09
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',400, ...
+    'MaxEpochs',600, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...
