@@ -26,13 +26,13 @@ ValidationData{2} = YValidation;
 
 layers = [%0.09
     imageInputLayer([n 1 1])
-    convolution2dLayer([3 1],50,"Name","convfirst1","Padding","same")
+    convolution2dLayer([3 1],20,"Name","convfirst1","Padding","same")
     reluLayer("Name","l1")
-    convolution2dLayer([3 1],50,"Name","convfirst2","Padding","same")
+    convolution2dLayer([3 1],20,"Name","convfirst2","Padding","same")
     reluLayer("Name","l2")
-    convolution2dLayer([3 1],50,"Name","convfirst3","Padding","same")
+    convolution2dLayer([3 1],20,"Name","convfirst3","Padding","same")
     reluLayer("Name","l3")
-    convolution2dLayer([3 1],10,"Name","convfirst4","Padding","same")
+    convolution2dLayer([3 1],20,"Name","convfirst4","Padding","same")
     reluLayer("Name","l4")
 %     convolution2dLayer([3 1],10,"Name","convfirst5","Padding","same")
 %     reluLayer("Name","l5")
@@ -57,7 +57,7 @@ layers = [%0.09
 % Specify training options
 options = trainingOptions('sgdm', ...
     'InitialLearnRate',0.01, ...
-    'MaxEpochs',1000, ...
+    'MaxEpochs',200, ...
     'ValidationData',ValidationData, ...
     'ValidationFrequency',30, ...
     'Shuffle','every-epoch', ...
