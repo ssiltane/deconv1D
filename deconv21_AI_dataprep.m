@@ -17,7 +17,8 @@ XTrain = zeros(n,1,1,NexamplesTrain);
 XValidation = zeros(n,1,1,NexamplesValidation);
 YTrain = zeros(1,1,n,NexamplesTrain);
 YValidation = zeros(1,1,n,NexamplesValidation);
-
+% YTrain = zeros(n,1,1,NexamplesTrain);
+% YValidation = zeros(n,1,1,NexamplesValidation);
 
 % Loop over examples
 for eee = 1:NexamplesValidation
