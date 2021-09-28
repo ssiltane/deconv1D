@@ -14,8 +14,8 @@ clf
 
 % Plot the targets
 subplot(2,1,1)
-plot(t,convtarget0(t),'b','linewidth',lwidth)
+plot(t,convtarget1(t),'b','linewidth',lwidth)
 ylim([-1.2 1.6])
 subplot(2,1,2)
-plot(t,convtarget1(t),'b','linewidth',lwidth)
+plot(t,convtarget2(t),'b','linewidth',lwidth)
 ylim([-1.2 1.6])
