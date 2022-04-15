@@ -10,7 +10,7 @@
 % Samuli Siltanen Sep 2020
 
 % Choose signal 1 or 2 or 3
-sig_num = 3;
+sig_num = 1;
 
 % Load precomputed stuff
 load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
