@@ -1,7 +1,7 @@
 % Plot the results of deconv4_SVD_comp.m. Show the singular values of the
 % system matrix. 
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen September 2021
 
 % Parameters for controlling the plot
 lwidth = 1;
@@ -23,14 +23,15 @@ axis square
 xlim([1 length(svals)])
 title('Singular values of the convolution matrix, log scale','fontsize',fsize)
 
-% % Create a plot window
-% figure(2)
-% clf
-% 
-% % Show a collection of columns of V
-% for iii = 1:size(V,2)
-%     plot(V(:,iii),'k','linewidth',lwidth)
-%     pause
-%     clf
-% end
+% Create a plot window
+figure(2)
+clf
+
+% Show a collection of columns of V, in other words singular vectors
+for iii = 1:size(V,2)
+    plot(V(:,iii),'k','linewidth',lwidth)
+    title(['Singular vector ',num2str(iii)],'fontsize',fsize)
+    pause
+    clf
+end
 

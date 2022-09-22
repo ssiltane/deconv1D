@@ -7,13 +7,13 @@
 % Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
 % problems with practical applications," SIAM 2012.
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen September 2022
 
-% Choose signal 1 or 2 or 3
-sig_num = 3;
+% Choose signal 
+sig_num = 4;
 
 % Number of singular values to use
-r_alpha = 50; 
+r_alpha = 30; 
 
 % Load previous results
 load data/SVD A U D V svals
@@ -24,12 +24,15 @@ if sig_num==1
 elseif sig_num==2
     f = f2;
     mn = mn2;
-else
+elseif sig_num==3
     f = f3;
     mn = mn3;
+else
+    f = f4;
+    mn = mn4;
 end
 
-% Build the matrix Dplus
+% Build the matrix Dplus_alpha
 Dplus = zeros(size(D));
 Dplus(1:r_alpha,1:r_alpha) = diag(1./svals(1:r_alpha));
 

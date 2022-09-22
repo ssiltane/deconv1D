@@ -1,6 +1,6 @@
 % Plot the results of deconv02_discretedata_comp.m
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen Sep 2022
 
 % Parameters for controlling the plot
 lwidth = 1.5;
@@ -9,7 +9,7 @@ msize  = 6;
 colorGray = [.5 .5 .5];
 
 % Load precomputed stuff
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3 f4 m4 mn4
 
 % Create a plot window
 figure(1)
@@ -104,10 +104,30 @@ set(gca,'xticklabel','','fontsize',fsize)
 title('Convolution (blue) of signal 3 (gray)','fontsize',fsize)
 
 
+% Create a plot window
+figure(4)
+clf
+
+% Plot target 
+subplot(2,1,1)
+plot([1:length(f4)],f4,'k','linewidth',lwidth)
+set(gca,'xticklabel','','fontsize',fsize)
+title('Ground truth: signal 4','fontsize',fsize)
+
+% Plot ideal convolution result 
+subplot(2,1,2)
+p1 = plot([1:length(f4)],f4,'k','linewidth',lwidth);
+set(p1,'color',colorGray)
+hold on
+plot([1:length(f4)],m4,'b','linewidth',lwidth)
+set(gca,'xticklabel','','fontsize',fsize)
+title('Convolution (blue) of signal 4 (gray)','fontsize',fsize)
+
+
 
 
 % Create a plot window
-figure(4)
+figure(10)
 clf
 
 % Plot ideal and perturbed PSF

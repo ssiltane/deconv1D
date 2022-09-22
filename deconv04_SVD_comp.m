@@ -5,7 +5,7 @@
 % Jennifer L Mueller & Samuli Siltanen: "Linear and nonlinear inverse
 % problems with practical applications," SIAM 2012.
 %
-% Samuli Siltanen Oct 2019
+% Samuli Siltanen September 2021
 
 % Load convolution matrix
 load  data/deconv03 A 

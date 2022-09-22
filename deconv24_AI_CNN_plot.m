@@ -3,8 +3,8 @@
 %
 % Samuli Siltanen Sep 2020
 
-% Choose signal 1 or 2 or 3
-sig_num = 1;
+% Choose signal
+sig_num = 4;
 
 % Parameters for controlling the plot
 lwidth = 1.5;
@@ -16,17 +16,19 @@ colorRecon= [144 2 190]/255;
 % Load previous results
 %load data_CNN/CNN_deep net
 load data_CNN/CNN_shallow net
-load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3
+load data/deconv02 n xvec Dx tvec p pn f1 m1 mn1 f2 m2 mn2 f3 m3 mn3 f4 m4 mn4
 if sig_num==1
     f = f1;
-    %mn = mn1;
-    mn = m1;
+    mn = mn1;
 elseif sig_num==2
     f = f2;
     mn = mn2;
-else
+elseif sig_num==3
     f = f3;
     mn = mn3;
+else
+    f = f4;
+    mn = mn4;
 end
 ymin = min(f)-.2;
 ymax = max(f)+.2;
